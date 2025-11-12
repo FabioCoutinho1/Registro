@@ -9,12 +9,12 @@ import { useMarcas } from "../hooks/useLocalStorage";
 import { Marca, StatusMarca } from "../types";
 import { MarcaFormData } from "../utils/validation";
 import Confirm from "../components/Confirm";
-import { fa } from "zod/v4/locales";
 
 export function Home() {
   const { marcas, adicionarMarca, atualizarMarca, excluirMarca } = useMarcas();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
+  const [isConfirmDelete, setIsConfirmDelete] = useState<string>("");
   const [marcaEditando, setMarcaEditando] = useState<Marca | undefined>(
     undefined
   );
@@ -42,10 +42,26 @@ export function Home() {
   };
 
   const handleExcluir = (id: string) => {
-    if (window.confirm("Tem certeza que deseja excluir este registro?")) {
-      excluirMarca(id);
-      setToast({ message: "Registro excluído com sucesso!", type: "success" });
-    }
+    setIsConfirmDelete(id);
+    setIsConfirmOpen(true);
+  };
+
+  const handleExcluirRegister = (id: string) => {
+    excluirMarca(id);
+    setToast({
+      message: "Registro excluído com sucesso!",
+      type: "success",
+    });
+
+    setIsConfirmOpen(false);
+  };
+
+  const handleOpemModalConfirm = () => {
+    setIsConfirmOpen(true);
+  };
+
+  const handelCancelDelete = () => {
+    setIsConfirmOpen(false);
   };
 
   const handleSubmit = (data: MarcaFormData) => {
@@ -85,6 +101,9 @@ export function Home() {
             marcas={marcasFiltradas}
             onEdit={handleEditar}
             onDelete={handleExcluir}
+            homeOnCancel={handelCancelDelete}
+            onOpemModal={handleOpemModalConfirm}
+            isOpemConfirmModal={isConfirmOpen}
           />
         </div>
       </main>
@@ -101,7 +120,17 @@ export function Home() {
         />
       </Modal>
 
-      {isConfirmOpen && <Confirm />}
+      <Modal
+        isOpen={isConfirmOpen}
+        onClose={handelCancelDelete}
+        title="Excluir Registro ?"
+      >
+        <Confirm
+          onCancel={handelCancelDelete}
+          idForDelete={isConfirmDelete}
+          onConfirm={handleExcluirRegister}
+        />
+      </Modal>
 
       {toast && (
         <Toast

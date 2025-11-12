@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Marca } from '../types';
+import { useState } from "react";
+import { Marca } from "../types";
 
 export function useLocalStorage<T>(key: string, initialValue: T) {
   const [storedValue, setStoredValue] = useState<T>(() => {
@@ -14,7 +14,8 @@ export function useLocalStorage<T>(key: string, initialValue: T) {
 
   const setValue = (value: T | ((val: T) => T)) => {
     try {
-      const valueToStore = value instanceof Function ? value(storedValue) : value;
+      const valueToStore =
+        value instanceof Function ? value(storedValue) : value;
       setStoredValue(valueToStore);
       window.localStorage.setItem(key, JSON.stringify(valueToStore));
     } catch (error) {
@@ -26,9 +27,9 @@ export function useLocalStorage<T>(key: string, initialValue: T) {
 }
 
 export function useMarcas() {
-  const [marcas, setMarcas] = useLocalStorage<Marca[]>('brandflow-marcas', []);
+  const [marcas, setMarcas] = useLocalStorage<Marca[]>("brandflow-marcas", []);
 
-  const adicionarMarca = (marca: Omit<Marca, 'id' | 'dataEnvio'>) => {
+  const adicionarMarca = (marca: Omit<Marca, "id" | "dataEnvio">) => {
     const novaMarca: Marca = {
       ...marca,
       id: crypto.randomUUID(),
@@ -39,11 +40,12 @@ export function useMarcas() {
   };
 
   const atualizarMarca = (id: string, atualizacoes: Partial<Marca>) => {
-    setMarcas(marcas.map(m => m.id === id ? { ...m, ...atualizacoes } : m));
+    setMarcas(marcas.map((m) => (m.id === id ? { ...m, ...atualizacoes } : m)));
   };
 
   const excluirMarca = (id: string) => {
-    setMarcas(marcas.filter(m => m.id !== id));
+    setMarcas(marcas.filter((m) => m.id !== id));
+    console.log("isso e do um testesssss");
   };
 
   return {
@@ -53,4 +55,3 @@ export function useMarcas() {
     excluirMarca,
   };
 }
-
