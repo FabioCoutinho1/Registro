@@ -1,16 +1,16 @@
 import { useState, useMemo } from "react";
-import { Header } from "../components/Header";
-import { MarcasTable } from "../components/MarcasTable";
-import { Modal } from "../components/Modal";
-import { MarcaForm } from "../components/MarcaForm";
-import { StatusFilter } from "../components/StatusFilter";
-import { Toast } from "../components/Toast";
+import Header from "../components/Header";
+import MarcasTable from "../components/MarcasTable";
+import Modal from "../components/Modal";
+import MarcaForm from "../components/MarcaForm";
+import StatusFilter from "../components/StatusFilter";
+import Toast from "../components/Toast";
 import { useMarcas } from "../hooks/useLocalStorage";
 import { Marca, StatusMarca } from "../types";
 import { MarcaFormData } from "../utils/validation";
 import Confirm from "../components/Confirm";
 
-export function Home() {
+const Home = () => {
   const { marcas, adicionarMarca, atualizarMarca, excluirMarca } = useMarcas();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
@@ -141,4 +141,6 @@ export function Home() {
       )}
     </div>
   );
-}
+};
+
+export default Home;

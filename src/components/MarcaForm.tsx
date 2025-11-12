@@ -9,7 +9,7 @@ interface MarcaFormProps {
   onCancel: () => void;
 }
 
-export function MarcaForm({ marca, onSubmit, onCancel }: MarcaFormProps) {
+const MarcaForm = ({ marca, onSubmit, onCancel }: MarcaFormProps) => {
   const {
     register,
     handleSubmit,
@@ -141,4 +141,6 @@ export function MarcaForm({ marca, onSubmit, onCancel }: MarcaFormProps) {
       </div>
     </form>
   );
-}
+};
+
+export default MarcaForm;

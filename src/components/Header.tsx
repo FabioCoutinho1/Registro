@@ -4,7 +4,7 @@ interface HeaderProps {
   onNewClick: () => void;
 }
 
-export function Header({ onNewClick }: HeaderProps) {
+const Header = ({ onNewClick }: HeaderProps) => {
   return (
     <header
       className="fixed top-0 left-0 right-0 bg-white border-b
@@ -22,7 +22,9 @@ export function Header({ onNewClick }: HeaderProps) {
             Novo Registro
           </button>
         </div>
-        </div>
-      </header>
+      </div>
+    </header>
   );
-}
+};
+
+export default Header;

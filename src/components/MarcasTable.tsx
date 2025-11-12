@@ -1,6 +1,6 @@
 import { Edit, Trash2 } from "lucide-react";
 import { Marca } from "../types";
-import { StatusBadge } from "./StatusBadge";
+import StatusBadge from "./StatusBadge";
 import { formatDate } from "../utils/formatDate";
 
 interface MarcasTableProps {
@@ -12,7 +12,7 @@ interface MarcasTableProps {
   isOpemConfirmModal: boolean;
 }
 
-export function MarcasTable({ marcas, onEdit, onDelete }: MarcasTableProps) {
+const MarcasTable = ({ marcas, onEdit, onDelete }: MarcasTableProps) => {
   if (marcas.length === 0) {
     return (
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-12 text-center">
@@ -102,4 +102,6 @@ export function MarcasTable({ marcas, onEdit, onDelete }: MarcasTableProps) {
       </div>
     </div>
   );
-}
+};
+
+export default MarcasTable;

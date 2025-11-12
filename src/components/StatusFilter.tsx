@@ -5,7 +5,7 @@ interface StatusFilterProps {
   onStatusChange: (status: StatusMarca) => void;
 }
 
-export function StatusFilter({ selectedStatus, onStatusChange }: StatusFilterProps) {
+const StatusFilter = ({ selectedStatus, onStatusChange }: StatusFilterProps) => {
   const statuses: StatusMarca[] = ['Todos', 'Em análise', 'Aprovado', 'Negado'];
 
   return (
@@ -28,5 +28,6 @@ export function StatusFilter({ selectedStatus, onStatusChange }: StatusFilterPro
       </div>
     </div>
   );
-}
+};
 
+export default StatusFilter;

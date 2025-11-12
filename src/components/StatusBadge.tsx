@@ -4,7 +4,7 @@ interface StatusBadgeProps {
   status: Marca["status"];
 }
 
-export function StatusBadge({ status }: StatusBadgeProps) {
+const StatusBadge = ({ status }: StatusBadgeProps) => {
   const statusConfig = {
     "Em análise": {
       bg: "bg-yellow-100",
@@ -32,4 +32,6 @@ export function StatusBadge({ status }: StatusBadgeProps) {
       {status}
     </span>
   );
-}
+};
+
+export default StatusBadge;
