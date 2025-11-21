@@ -69,7 +69,7 @@ const MarcasTable = ({ marcas, onEdit, onDelete }: MarcasTableProps) => {
                     {marca.descricao ? (
                       marca.descricao
                     ) : (
-                      <p className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium  border ">
+                      <p className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium  border ">
                         Vazio
                       </p>
                     )}
