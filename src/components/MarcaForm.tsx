@@ -79,7 +79,7 @@ const MarcaForm = ({ marca, onSubmit, onCancel }: MarcaFormProps) => {
           htmlFor="descricao"
           className="block text-sm font-medium text-gray-700 mb-1"
         >
-          Descrição *
+          Descrição * <span className="text-gray-400 text-xs">&#40;Opcional&#41;</span>
         </label>
         <textarea
           id="descricao"
